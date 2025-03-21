@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registrasi IT PNM Summit</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+    <style>
+      body {
+        background-color: #f4f4f4;
+        margin-left: 260px;
+      }
+      .sidebar {
+        width: 250px;
+        position: fixed;
+        height: 100vh;
+        left: 0;
+        top: 0;
+        background: #030303;
+        padding: 20px;
+        color: white;
+      }
+      .sidebar a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        padding: 10px;
+        transition: 0.3s;
+      }
+      .sidebar .logo{
+        width: 50px;
+        height: 50px;
+        margin: auto;
+      }
+      .logo-header {
+         width: 80px; /* Sesuaikan ukuran logo */
+         height: auto;
+         display: block;
+         margin: 0 auto 10px; /* Pusatkan dan beri jarak */
+      }
+      .sidebar a:hover {
+        background: #146dcc;
+        border-radius: 5px;
+      }
+
+
+      .container {
+        max-width: 600px;
+        margin-top: 50px;
+      }
+      main {
+        min-height: calc(100vh - 150px);
+      }
+      footer {
+        position: relative;
+        width: 100%;
+        background: #0a0b0d;
+        color: white;
+        text-align: center;
+        padding: 15px;
+        margin-top: 20px;
+      }
+      @media (max-width: 768px) {
+        body {
+          margin-left: 0;
+        }
+        .sidebar {
+          width: 100%;
+          height: auto;
+          position: relative;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <h3>Menu</h3>
+      <a href="#"><i class="fa-solid fa-home"></i> Home</a>
+      <a href="#"><i class="fa-solid fa-info-circle"></i> Tentang Seminar</a>
+      <a href="#"><i class="fa-solid fa-pen"></i> Registrasi</a>
+    </div>
+
+    <header class="bg-primary text-white text-center py-3" data-aos="fade-down">
+      <img src="pnm.png" class="logo-header">
+      <h1>IT PNM Summit</h1>
+      <p>Registrasi Seminar Teknologi Nasional</p>
+    </header>
+
+    <main class="container" data-aos="fade-up">
+      <h2 class="text-center mt-4">Form Registrasi</h2>
+      <form id="registrationForm" novalidate>
+        <div class="mb-3">
+          <label class="form-label">Nama Lengkap</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            required
+            minlength="3"
+          />
+          <div class="invalid-feedback" id="nameError">Minimal 3 karakter.</div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" required />
+          <div class="invalid-feedback" id="emailError">Format email tidak valid.</div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            required
+            minlength="8"
+          />
+          <div class="invalid-feedback" id="passwordError">Minimal 8 karakter.</div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Konfirmasi Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="confirmPassword"
+            required
+          />
+          <div class="invalid-feedback" id="confirmPasswordError">Password tidak cocok.</div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Tanggal Lahir</label>
+          <input type="date" class="form-control" id="dob" required />
+          <div class="invalid-feedback" id="dobError">Tanggal lahir maksimal tahun 2006.</div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Nomor HP</label>
+          <input type="tel" class="form-control" id="phone" required />
+          <div class="invalid-feedback" id="phoneError">Format nomor HP tidak valid.</div>
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary w-100"
+          disabled
+          id="submitBtn"
+        >
+          Daftar
+        </button>
+      </form>
+    </main>
+        </button>
+      </form>
+    </main>
+
+    <footer>
+      <p>&copy;  2025 Salasatin Enggal Setiani | 243307024. </p>
+       <p>&copy;  Contact Person (08573 6798 5649)</p>
+      <p>
+        <a href="#">Kebijakan Privasi</a> | <a href="#">Syarat & Ketentuan</a>
+      </p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      AOS.init();
+      const form = document.getElementById("registrationForm");
+      const submitBtn = document.getElementById("submitBtn");
+      const password = document.getElementById("password");
+      const confirmPassword = document.getElementById("confirmPassword");
+      const dob = document.getElementById("dob");
+      const phone = document.getElementById("phone");
+
+      function validateForm() {
+        const nameValid = form.name.value.length >= 3;
+        const emailValid = form.email.checkValidity();
+        const passwordValid = form.password.value.length >= 8;
+        const confirmPasswordValid = form.password.value === form.confirmPassword.value;
+        const birthYear = new Date(dob.value).getFullYear();
+        const dobValid = birthYear <= 2006;
+        const phoneRegex = /^(\+62|62|0)8[1-9][0-9]{6,9}$/;
+        const phoneValid = phoneRegex.test(phone.value);
+
+        document.getElementById("nameError").style.display = nameValid ? "none" : "block";
+        document.getElementById("emailError").style.display = emailValid ? "none" : "block";
+        document.getElementById("passwordError").style.display = passwordValid ? "none" : "block";
+        document.getElementById("confirmPasswordError").style.display = confirmPasswordValid ? "none" : "block";
+        document.getElementById("dobError").style.display = dobValid ? "none" : "block";
+        document.getElementById("phoneError").style.display = phoneValid ? "none" : "block";
+
+        submitBtn.disabled = !(nameValid && emailValid && passwordValid && confirmPasswordValid && dobValid && phoneValid);
+      }
+
+      form.addEventListener("input", validateForm);
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        validateForm();
+        if (!submitBtn.disabled) {
+          Swal.fire({
+            title: "Registrasi Berhasil!",
+            text: "Selamat, pendaftaran Anda berhasil.",
+            icon: "success",
+            confirmButtonText: "OK",
+          }).then(() => form.reset());
+        }
+      });
+    </script>
+  </body>
+</html>
